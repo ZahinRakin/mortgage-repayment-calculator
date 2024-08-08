@@ -6,30 +6,73 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
-  <title>Frontend Mentor | Mortgage repayment calculator</title>
+  <title>Mortgage repayment calculator</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="./styles/styles.css">
+  <link rel="stylesheet" href="./styles/attribution.css">
 </head>
 <body>
+  <div class="interaction-sec">
+    <header class="head-sec">
+      <div class="project-title">
+        Mortgage Calculator
+      </div>
+      <button class="clear-all-button">
+        Clear All
+      </button>
+    </header>
+    <div class="input-sec">
+      <div class="input-name">
+        <div class="name-txt">
+          Mortgage Amount
+        </div>
+        <input type="text" class="input-bar">
+      </div>
+      <div class="input-name">
+        <div class="name-txt">
+          Mortgage Term
+        </div>
+        <input type="text" class="input-bar">
+      </div>
+      <div class="input-name">
+        <div class="name-txt">
+          Interest Rate
+        </div>
+        <input type="text" class="input-bar">
+      </div>
+    </div>
+    <div class="selection-sec">
+      <div class="name-txt">
+        Mortgage Type
+      </div>
+      <div class="input-bar">
+        <label>
+          <input type="radio" name="mortgage-type" value="repayment">
+          <span class="mortgage-type-name">
+            Repayment
+          </span>
+        </label>
+        <label>
+          <input type="radio" name="mortgage-type" value="interest-only">
+          <span class="mortgage-type-name">
+            Interest Only
+          </span>
+        </label>
+      </div>
+    </div>
+    <button class="submit-button">
+      Calculate Repayments
+    </button>
+  </div>
+  <div class="result-sec">
+    <div class="empty-img-holder">
+      <img src="assets" alt="" class="empty-img">
+    </div>
+  </div>
 
-  Mortgage Calculator
-  Clear All
 
-  Mortgage Amount
-
-  Mortgage Term
-
-  Interest Rate
-
-  Mortgage Type
-  Repayment
-  Interest Only
-
-  Calculate Repayments
+  
 
   <!-- Empty results start -->
 
@@ -55,7 +98,7 @@
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="https://github.com/ZahinRakin">ZahinRakin</a>.
   </div>
 </body>
 </html>
