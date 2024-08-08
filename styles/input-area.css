@@ -1,0 +1,17 @@
+.input-bar {
+  border: 1px solid black;
+  padding: 5px;
+  margin-top: 8px;
+}
+
+.clear-all-button {
+  text-decoration: underline;
+}
+
+
+.submit-button {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 6px;
+}
