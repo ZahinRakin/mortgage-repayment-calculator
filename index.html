@@ -9,14 +9,11 @@
   <title>Mortgage repayment calculator</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <link rel="stylesheet" href="./styles/styles.css">
-  <link rel="stylesheet" href="./styles/input-area.css">
-  <link rel="stylesheet" href="./styles/result-area.css">
-  <link rel="stylesheet" href="./styles/attribution.css">
+  <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
   <main class="container">
-    <div class="interaction-sec">
+    <form class="interaction-sec">
       <header class="head-sec">
         <h2>
           Mortgage Calculator
@@ -30,28 +27,28 @@
           <div class="name-txt">
             Mortgage Amount
           </div>
-          <input type="text" class="input-bar">
+          <input type="text" class="input-bar" required>
         </div>
         <div class="input-name">
           <div class="name-txt">
             Mortgage Term
           </div>
-          <input type="text" class="input-bar">
+          <input type="text" class="input-bar" required>
         </div>
         <div class="input-name">
           <div class="name-txt">
             Interest Rate
           </div>
-          <input type="text" class="input-bar">
+          <input type="text" class="input-bar" required>
         </div>
       </div>
-      <div class="selection-sec">
+      <div class="selection">
         <div class="name-txt">
           Mortgage Type
         </div>
         <div class="selection-sec">
           <label class="input-bar">
-            <input type="radio" name="mortgage-type" value="repayment">
+            <input type="radio" name="mortgage-type" value="repayment" required>
             <span class="mortgage-type-name">
               Repayment
             </span>
@@ -64,15 +61,13 @@
           </label>
         </div>
       </div>
-      <button class="submit-button">
+      <button type="submit" class="submit-button">
         <img src="https://zahinrakin.github.io/mortgage-repayment-calculator/assets/images/icon-calculator.svg" alt="calculator icon">
         <span>
-          <h4>
-            Calculate Repayments
-          </h4>
+          Calculate Repayments
         </span>
       </button>
-    </div>
+    </form>
     <div class="result-sec">
       <div class="empty-img-holder">
         <img src="https://zahinrakin.github.io/mortgage-repayment-calculator/assets/images/illustration-empty.svg" alt="illustration empty" class="empty-img">

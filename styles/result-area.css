@@ -1,4 +1,21 @@
 .result-sec {
-  max-width: 23rem;
   text-align: center;
+  background-color: hsl(202, 55%, 16%);
+  display: grid;
+  place-content: center;
+  padding: 2rem;
+  max-width: 30rem;
+
+  .empty-img-holder{
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  h2 {
+    color: white;
+  }
+
+  .guidelines {
+    color: hsl(203, 41%, 72%);
+  }
 }

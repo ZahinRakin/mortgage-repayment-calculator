@@ -1,0 +1,41 @@
+
+body {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  background-color: white;
+}
+
+@media (width < 600px) {
+
+}
+
+@media (width >= 600px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    gap: 20px;
+    border-radius: 25px;
+  }
+  .input-sec {
+    grid-template-areas: 
+      'One One'
+      'Two Three';
+  }
+  .result-sec {
+    border-radius: 0 25px 25px 90px;
+  }
+  .submit-button {
+    max-width: fit-content;
+    justify-content: start;
+    margin-top: 2.5rem;
+  }
+}
+
+@media (width >= 1200px) {
+
+}
