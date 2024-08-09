@@ -1,9 +1,5 @@
 .error-message {
   display: none;
   color: red;
-  padding: 10px 0;
-}
-
-input:invalid + .error-message {
-  display: inline;
+  padding-bottom: 0;
 }

@@ -27,19 +27,37 @@
           <div class="name-txt">
             Mortgage Amount
           </div>
-          <input type="text" class="input-bar" required>
+          <div class="input-bar">
+            <span class="input-wrapper left-wrapper">£</span>
+            <input type="text" class="input-here" required>
+          </div>
+          <div class="name-txt error-message">
+            This field is required
+          </div>
         </div>
         <div class="input-name">
           <div class="name-txt">
             Mortgage Term
           </div>
-          <input type="text" class="input-bar" required>
+          <div class="input-bar wrap-right">
+            <input type="text" class="input-here" required>
+            <span class="input-wrapper">years</span>
+          </div>
+          <div class="name-txt error-message">
+            This field is required
+          </div>
         </div>
         <div class="input-name">
           <div class="name-txt">
             Interest Rate
           </div>
-          <input type="text" class="input-bar" required>
+          <div class="input-bar wrap-right">
+            <input type="text" class="input-here" required>
+            <span class="input-wrapper">%</span>
+          </div>
+          <div class="name-txt error-message">
+            This field is required
+          </div>
         </div>
       </div>
       <div class="selection">
@@ -59,6 +77,9 @@
               Interest Only
             </span>
           </label>
+        </div>
+        <div class="name-txt error-message">
+          This field is required
         </div>
       </div>
       <button type="submit" class="submit-button">

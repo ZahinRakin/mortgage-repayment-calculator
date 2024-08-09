@@ -22,6 +22,18 @@
   margin-bottom: 25px;
 }
 
+.input-name:first-child {
+  grid-area: One;
+}
+
+.input-name:nth-child(2) {
+  grid-area: Two;
+}
+
+.input-name:last-child {
+  grid-area: Three;
+}
+
 .selection-sec {
   display: grid;
   grid-template-rows: auto auto;
@@ -34,8 +46,26 @@
 
 .input-bar {
   border: 1px solid black;
-  padding: .8rem;
   border-radius: 5px;
+  overflow: hidden;
+}
+.input-here {
+  padding: var(--input-padding);
+}
+label.input-bar {
+  padding: var(--input-padding);
+}
+
+.wrap-right {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.input-wrapper {
+  background-color: var(--Slate-100);
+  padding: var(--input-padding);
+  font-size: var(--def-font-size);
+  text-align: center;
 }
 
 .clear-all-button {
@@ -43,16 +73,6 @@
   font-weight: 400;
   font-size: 1rem;
   text-underline-offset: 3px;
-}
-
-.input-name:first-child {
-  grid-area: One;
-}
-.input-name:nth-child(2) {
-  grid-area: Two;
-}
-.input-name:last-child {
-  grid-area: Three;
 }
 
 .mortgage-type-name {
@@ -66,13 +86,14 @@
   display: grid;
   grid-template-columns: auto auto;
   align-items: center;
-  gap: .8rem;
+  justify-content: start;
+  gap: var(--input-padding);
   width: 100%;
 
   padding: .85rem 2.3rem;
-  border: 1px solid yellow;
+  border: 1px solid hsl(61, 70%, 52%);
   border-radius: 50px;
-  background-color: yellow;
+  background-color: hsl(61, 70%, 52%);
 
   justify-content: center;
   margin: 1.5rem auto 0 auto;
