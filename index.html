@@ -27,7 +27,7 @@
           <div class="name-txt">
             Mortgage Amount
           </div>
-          <div class="input-bar">
+          <div class="input-bar input-bar-focused">
             <span class="input-wrapper left-wrapper">£</span>
             <input type="text" class="input-here" required>
           </div>
@@ -65,13 +65,23 @@
           Mortgage Type
         </div>
         <div class="selection-sec">
-          <label class="input-bar">
+          <label class="input-bar input-bar-selected">
+            <span class="radio-stroke">
+              <div class="radio-inner-part">
+                <!--this is the custom radio button-->
+              </div>
+            </span>
             <input type="radio" name="mortgage-type" value="repayment" required>
             <span class="mortgage-type-name">
               Repayment
             </span>
           </label>
           <label class="input-bar">
+            <span class="radio-stroke radio-stroke-selected">
+              <div class="radio-inner-part">
+                <!--this is the custom radio button-->
+              </div>
+            </span>
             <input type="radio" name="mortgage-type" value="interest-only">
             <span class="mortgage-type-name">
               Interest Only

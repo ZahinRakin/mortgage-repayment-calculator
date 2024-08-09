@@ -1,5 +1,6 @@
 :root {
   --Lime-custom: hsl(61, 70%, 52%);
+  --selected-radio: rgba(215, 218, 47, 0.3); 
   --Red-custom: hsl(4, 69%, 50%);
   --White-custom: hsl(0, 0%, 100%);
   --Slate-100: hsl(202, 86%, 94%);

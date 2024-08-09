@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: 'PlusJakartaSans';
   background-color: hsl(202, 86%, 94%);
+  color: var(--Slate-900);
 }
 
 button,
@@ -22,6 +23,7 @@ input{
   font-family: "PlusJakartaSans";
   font-weight: 800;
   font-size: var(--def-font-size);
+  color: var(--Slate-900);
 }
 
 input[type="text"] {
@@ -49,4 +51,5 @@ h4,
 h5,
 h6 {
   margin: 0;
+  color: var(--Slate-900);
 }
