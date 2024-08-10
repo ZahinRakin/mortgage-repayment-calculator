@@ -7,11 +7,16 @@
 //js-amount-parent
 //js-years-parent
 //js-interest-parent
+//js-repayment-bar
+//js-interest-only-bar
 
 
 const amountElem = document.querySelector(".js-mort-amount");
 const yearsElem = document.querySelector(".js-mort-years");
 const interestElem = document.querySelector(".js-mort-interest");
+//selection section.
+const repayElem = document.querySelector(".js-repayment-bar");
+const interestOnlyElem = document.querySelector(".js-interest-only-bar");
 
 let amount = NaN;
 let years = NaN;
@@ -33,48 +38,69 @@ yearsElem.addEventListener("focus", () => {
 interestElem.addEventListener("focus", () => {
   manageFocus(".js-interest-parent", ".js-amount-parent", ".js-years-parent");
 });
+//selection section.
+repayElem.addEventListener("focus", () => {
+  manageFocus(".js-repayment-bar", ".js-interest-parent", ".js-interest-only-bar");
+});
+interestOnlyElem.addEventListener("focus", () => {
+  manageFocus(".js-interest-only-bar", ".js-repayment-bar", ".js-interest-parent");
+});
 
 
 amountElem.addEventListener("keydown", e => {
-  handleKeyDown(yearsElem, '.error-amount', e);
+  handleKeyDown(interestElem, yearsElem, e);
 });
 
 yearsElem.addEventListener("keydown", e => {
-  handleKeyDown(interestElem, '.error-years', e);
+  handleKeyDown(amountElem, interestElem, e);
 });
 
 interestElem.addEventListener("keydown", e => {
-  if(e.key === "Enter"){
-    migrateToSelect();
-  }
+  e.key === 'Enter' ? migrateToSelect() : handleKeyDown(yearsElem, amountElem, e);
 });
 
-function handleKeyDown(nextInput, errorClass, e){
-  if(e.key === 'Enter' || e.key === 'ArrowDown') {
+function migrateToSelect(){               // unfinished....
+  console.log("hellow world.");
+}
+
+repayElem.addEventListener("keyDown", e => {
+  selHandleKeyDown(interestOnlyElem, e);
+});
+
+interestOnlyElem.addEventListener("keyDown", e => {
+  selHandleKeyDown(repayElem, e);
+});
+
+function selHandleKeyDown(nextInput, e) {
+  if(e.key === 'Enter') {
+    e.preventDefault();
+    submit();                                //unfinished....
+  } else if(e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    
+  }
+}
+
+
+
+function handleKeyDown(previousInput, nextInput, e){
+  if(e.key === 'Enter' || e.key === 'ArrowDown' || e.key === 'ArrowRight') {
     e.preventDefault();
     nextInput.focus();
-  } else { //this doesn't work.
-    let temp = Number(e.key);
-    if(temp === NaN && e.key !== '.' && e.key !== ',') {
-      wrongInputError(errorClass);
-    }
+  } else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') { 
+    e.preventDefault();
+    previousInput.focus();
   }
 }
 
 
 function manageFocus(addTo, removeFrom1, removeFrom2){
+  document.querySelector('.input-bar-focused').classList.remove('.input-bar-focused'); //this line is added.
   document.querySelector(addTo)
     .classList.add("input-bar-focused");
   document.querySelector(removeFrom1)
     .classList.remove("input-bar-focused");
   document.querySelector(removeFrom2)
     .classList.remove("input-bar-focused");
-}
-
-function wrongInputError(className) {
-  const errorElem = document.querySelector(className);
-  errorElem.style.display = 'block';
-  errorElem.innerText = "Wrong input type. only digit(0-9) & comma(,) are allowed.";
 }
 
 function clearAll(){
