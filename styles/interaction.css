@@ -102,8 +102,8 @@ input[type="radio"] {
 }
 
 .radio-stroke {
-  height: 1rem;
-  aspect-ratio: 1/1;
+  height: 1.2rem;
+  width: 1.2rem;
   border: 1px solid var(--Slate-900);
   border-radius: 50%; 
   display: grid;
@@ -113,8 +113,8 @@ input[type="radio"] {
 .radio-inner-part {
   display: none;
   background-color: var(--Lime-custom);
-  height: .5rem;
-  aspect-ratio: 1/1;
+  height: 0.7rem;
+  width: 0.7rem;
   border-radius: 50%;
 }
 
@@ -147,5 +147,9 @@ input[type="radio"] {
 
   justify-content: center;
   margin: 1.5rem auto 0 auto;
+}
+
+.submit-button:hover {
+  background-color: hsl(61, 83%, 55%);
 }
 

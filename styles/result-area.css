@@ -1,6 +1,6 @@
 .result-sec {
-  text-align: center;
-  background-color: hsl(202, 55%, 16%);
+  text-align: start; /*when transitioning it needs to be changed*/
+  background-color: var(--Slate-800);
   display: grid;
   place-content: center;
   padding: 2rem;
@@ -11,6 +11,7 @@
     margin: 0 auto;
   }
 
+/*these are for empty result sec*/
   h2 {
     color: white;
   }
@@ -18,4 +19,47 @@
   .guidelines {
     color: hsl(203, 41%, 72%);
   }
+}
+
+/*these are for valued result section*/
+
+.render-place {
+  background-color: var(--Slate-1000);
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  z-index: 100;
+}
+
+.yellow-stripe {
+  height: 7px;
+  width: auto;
+  background-color: var(--Lime-custom);
+  border-radius: 6px 6px 0 0;
+  transform: translateY(4px);
+  z-index: 99;
+}
+.result-sec h2 {
+  color: white;
+}
+.result-sec p:nth-child(2) {
+  color: var(--Slate-300);
+}
+.result-sec div:nth-of-type(2) {
+  color: var(--Slate-300);
+}
+
+
+
+
+
+.result-sec .render-place .render-monthly-amount {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--Lime-custom); /*why this isn't changing the color of the font*/
+}
+
+.result-sec .render-place .render-total {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--White-custom);
 }
