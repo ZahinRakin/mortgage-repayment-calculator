@@ -51,6 +51,11 @@
   padding: 10px 0;
 }
 
+.wrap-left {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
 .input-bar {
   border: 1px solid var(--Slate-700);
   border-radius: 5px;
