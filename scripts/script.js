@@ -1,67 +1,84 @@
 // input-bar-focused
 // input-bar-selected
 // radio-stroke-selected
+//js-mort-amount  //error-amount
+//js-mort-years  // error-years
+//js-mort-interest //error-interest
+//js-amount-parent
+//js-years-parent
+//js-interest-parent
 
-let mortAmount = 0;
-let mortYears = 0;
-let mortInterest = 0;
 
-getMortAmount();
+const amountElem = document.querySelector(".js-mort-amount");
+const yearsElem = document.querySelector(".js-mort-years");
+const interestElem = document.querySelector(".js-mort-interest");
 
-function getMortAmount() {
-  const mortInputElem = document.querySelector(".js-mort-amount");
+let amount = NaN;
+let years = NaN;
+let interest = NaN;
 
-  mortInputElem.focus();
+document.querySelector(".js-clear-all-button")
+  .addEventListener("click", () => {
+    clearAll();
+  });
+
+
+amountElem.addEventListener("focus", () => {
+  manageFocus(".js-amount-parent", ".js-years-parent", ".js-interest-parent");
+});
+
+yearsElem.addEventListener("focus", () => {
   manageFocus(".js-years-parent", ".js-interest-parent", ".js-amount-parent");
+});
+interestElem.addEventListener("focus", () => {
+  manageFocus(".js-interest-parent", ".js-amount-parent", ".js-years-parent");
+});
 
-  mortInputElem.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-      event.preventDefault(); // to prevent default form submission.
-      mortAmount = mortInputElem.value;
-      mortAmount = Number.parseInt(mortAmount.replace(/,/g, ''), 10);
-      console.log(mortAmount);
-      getMortYears(); // Call the next function
+
+amountElem.addEventListener("keydown", e => {
+  handleKeyDown(yearsElem, '.error-amount', e);
+});
+
+yearsElem.addEventListener("keydown", e => {
+  handleKeyDown(interestElem, '.error-years', e);
+});
+
+interestElem.addEventListener("keydown", e => {
+  if(e.key === "Enter"){
+    migrateToSelect();
+  }
+});
+
+function handleKeyDown(nextInput, errorClass, e){
+  if(e.key === 'Enter' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    nextInput.focus();
+  } else { //this doesn't work.
+    let temp = Number(e.key);
+    if(temp === NaN && e.key !== '.' && e.key !== ',') {
+      wrongInputError(errorClass);
     }
-  });
+  }
 }
 
-function getMortYears() {
-  const yearsInputElem = document.querySelector(".js-mort-years");
 
-  yearsInputElem.focus();
-  manageFocus(".js-amount-parent", ".js-interest-parent", ".js-years-parent");
-
-  yearsInputElem.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-      event.preventDefault(); // to prevent default form submission.
-      mortYears = yearsInputElem.value;
-      mortYears = Number.parseInt(mortYears, 10);
-      getMortInterest(); // Call the next function
-    }
-  });
+function manageFocus(addTo, removeFrom1, removeFrom2){
+  document.querySelector(addTo)
+    .classList.add("input-bar-focused");
+  document.querySelector(removeFrom1)
+    .classList.remove("input-bar-focused");
+  document.querySelector(removeFrom2)
+    .classList.remove("input-bar-focused");
 }
 
-function getMortInterest() {
-  const interestInputElem = document.querySelector(".js-mort-interest");
-
-  interestInputElem.focus();
-  manageFocus(".js-years-parent", ".js-interest-parent", ".js-amount-parent");
-
-  interestInputElem.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-      // You can add more functionality here if needed
-    }
-  });
+function wrongInputError(className) {
+  const errorElem = document.querySelector(className);
+  errorElem.style.display = 'block';
+  errorElem.innerText = "Wrong input type. only digit(0-9) & comma(,) are allowed.";
 }
 
-function manageFocus(rmFrom1, rmFrom2, addClass){
-  if(document.querySelector("rmFrom1").classList.contains("input-bar-focused")){
-    document.querySelector("rmFrom1").classList.remove("input-bar-focused")
-  }
-  if(document.querySelector("rmFrom2").classList.contains("input-bar-focused")){
-    document.querySelector("rmFrom2").classList.remove("input-bar-focused")
-  }
-  if(!document.querySelector("addTo").classList.contains("input-bar-focused")){
-    document.querySelector("addTo").classList.add("input-bar-focused")
-  }
+function clearAll(){
+  amountElem.value = "";
+  yearsElem.value = "";
+  interestElem.value = "";
 }
