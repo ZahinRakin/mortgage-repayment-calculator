@@ -13,7 +13,7 @@
 </head>
 <body>
   <main class="container">
-    <form class="interaction-sec">
+    <form class="interaction-sec" name="mort-info">
       <header class="head-sec">
         <h2>
           Mortgage Calculator
@@ -27,9 +27,9 @@
           <div class="name-txt">
             Mortgage Amount
           </div>
-          <div class="input-bar input-bar-focused">
+          <div class="input-bar">
             <span class="input-wrapper left-wrapper">£</span>
-            <input type="text" class="input-here" required>
+            <input type="text" class="input-here js-mort-amount">
           </div>
           <div class="name-txt error-message">
             This field is required
@@ -40,7 +40,7 @@
             Mortgage Term
           </div>
           <div class="input-bar wrap-right">
-            <input type="text" class="input-here" required>
+            <input type="text" class="input-here js-mort-years">
             <span class="input-wrapper">years</span>
           </div>
           <div class="name-txt error-message">
@@ -52,7 +52,7 @@
             Interest Rate
           </div>
           <div class="input-bar wrap-right">
-            <input type="text" class="input-here" required>
+            <input type="text" class="input-here js-mort-interest">
             <span class="input-wrapper">%</span>
           </div>
           <div class="name-txt error-message">
@@ -65,7 +65,7 @@
           Mortgage Type
         </div>
         <div class="selection-sec">
-          <label class="input-bar input-bar-selected">
+          <label class="input-bar">
             <span class="radio-stroke">
               <div class="radio-inner-part">
                 <!--this is the custom radio button-->
@@ -77,7 +77,7 @@
             </span>
           </label>
           <label class="input-bar">
-            <span class="radio-stroke radio-stroke-selected">
+            <span class="radio-stroke">
               <div class="radio-inner-part">
                 <!--this is the custom radio button-->
               </div>
@@ -100,6 +100,26 @@
       </button>
     </form>
     <div class="result-sec">
+        <div class="empty-img-holder">
+          <img src="../assets/images/illustration-empty.svg" alt="illustration empty" class="empty-img">
+        </div>
+        <h2>
+          Results shown here
+        </h2>
+        <p class="guidelines">
+          Complete the form and click “calculate repayments” to see what
+          your monthly repayments would be.
+        </p>
+    </div>
+  </main>
+
+  
+
+  <!-- Empty results start --
+
+  !-- Empty results end -->
+
+  <!-- Completed results start --
       <h2>
         Your results
       </h2>
@@ -120,30 +140,6 @@
           </div>
         </p>
       </div>
-    </div>
-  </main>
-
-  
-
-  <!-- Empty results start --
-
-  
-<div class="empty-img-holder">
-        <img src="../assets/images/illustration-empty.svg" alt="illustration empty" class="empty-img">
-      </div>
-      <h2>
-        Results shown here
-      </h2>
-      <p class="guidelines">
-        Complete the form and click “calculate repayments” to see what
-        your monthly repayments would be.
-      </p>
-
-
-  !-- Empty results end -->
-
-  <!-- Completed results start --
-
 
   !-- Completed results end -->
   
@@ -151,5 +147,6 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/ZahinRakin">ZahinRakin</a>.
   </div>
+  <script src="./scripts/script.js" type="module"></script>
 </body>
 </html>

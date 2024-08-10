@@ -28,6 +28,7 @@ input{
 
 input[type="text"] {
   width: 100%;
+  color: var(--Slate-700);
 }
 
 input[type="text"]:focus {
