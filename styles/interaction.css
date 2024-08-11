@@ -124,7 +124,7 @@ input[type="radio"] {
   border-radius: 50%;
 }
 
-.radio-stroke-selected {
+.radio-selected {
   border-color: var(--Lime-custom);
   .radio-inner-part {
     display: block;

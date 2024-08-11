@@ -7,10 +7,10 @@
 //js-amount-parent
 //js-years-parent
 //js-interest-parent
-//js-repayment-bar        //js-repay-radio
+//js-repayment-bar        //js-repay-radio         //radio-selected
 //js-interest-only-bar    //js-interest-only-radio
 import { manageFocus, clearAll, handleKeyDown } from "./done.js";
-import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem} from './variables.js';
+import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem, submitButton, amount, years, interest} from './variables.js';
 
 eventListeners(); 
 
@@ -20,9 +20,17 @@ function eventListeners() {
     clearAll();
   });
 
+  submitButton.addEventListener("click", e => {
+    e.preventDefault();
+    console.log("submit button have been pressed.");
+    checkInfo();
+    pressSubmit();
+  });
+
   amountElem.addEventListener("focus", () => {
     manageFocus(".js-amount-parent");
   });
+  amountElem.focus(); //this is for startup.....
 
   yearsElem.addEventListener("focus", () => {
     manageFocus(".js-years-parent");
@@ -54,7 +62,10 @@ function eventListeners() {
   repayElem.addEventListener("keydown", e => {
     if(e.key === 'Enter'){
       e.preventDefault();
-      console.log('selecting is the only thing that is remaining.');        //tesing.
+                                                        //under construction
+      selectRadio(".js-repay-radio");
+      checkInfo();
+      pressSubmit();
       amountElem.focus();
     } else {
       handleKeyDown(interestElem, interestOnlyElem, e);
@@ -64,7 +75,10 @@ function eventListeners() {
   interestOnlyElem.addEventListener("keydown", e => {
     if(e.key === 'Enter') {
       e.preventDefault();
-      console.log('selecting is the only thing that is remaining.');        //tesing.
+                                                        //under construction
+      selectRadio(".js-interest-only-radio");
+      checkInfo();
+      pressSubmit();
       amountElem.focus();
     } else {
       handleKeyDown(repayElem, amountElem, e);
@@ -74,6 +88,32 @@ function eventListeners() {
   //this needs to be last be
 }
 
-function submit(){
+function pressSubmit(){
   console.log("hello I am from submit..");
+}
+
+function checkInfo(){
+  console.log("inside checkInfo");
+
+
+  amount = Number.parseFloat(amountElem.value.replace(/,/g, ''));
+  years = Number.parseFloat(yearsElem.value);
+  interest = Number.parseFloat(interestElem.value); 
+
+  console.log(amount, years, interest);
+
+  if(amount === NaN || years === NaN || interest === NaN){
+    document.querySelectorAll('.error-message').forEach(elem => {
+      elem.style.display = "block";
+    });
+  } else {
+    document.querySelectorAll('.error-message').forEach(elem => {
+      elem.style.display = "none";
+    });  
+  }
+}
+
+function selectRadio(classSelector){
+  const elem = document.querySelector(classSelector).classList;
+  elem.contains("radio-selected") ? elem.remove('radio-selected') : elem.add('radio-selected'); 
 }
