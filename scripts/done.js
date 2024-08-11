@@ -1,4 +1,4 @@
-import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem} from './variables';
+import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem} from './variables.js';
 
 
 export function manageFocus(addTo){
