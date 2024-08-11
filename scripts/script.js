@@ -7,7 +7,7 @@
 //js-amount-parent
 //js-years-parent
 //js-interest-parent
-//js-repayment-bar        //js-repay-radio         //radio-selected
+//js-repayment-bar        //js-repay-radio         //radio-selected   #repay-radio #interest-only-radio
 //js-interest-only-bar    //js-interest-only-radio
 import { manageFocus, clearAll, handleKeyDown } from "./done.js";
 import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem, submitButton, resElem} from './variables.js';
@@ -15,6 +15,7 @@ import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem, submit
 let amount = NaN;
 let years = NaN;
 let interest = NaN;
+let mortgageType = '';
 
 
 eventListeners(); 
@@ -68,6 +69,7 @@ function eventListeners() {
   //selection section
   repayElem.addEventListener("keydown", e => {
     if(e.key === 'Enter'){                         //still under construction.
+      document.querySelector("#repay-radio").checked = true;
       e.preventDefault();
       selectRadio(".js-repay-radio");
       if(checkInfo()){
@@ -81,6 +83,7 @@ function eventListeners() {
   
   interestOnlyElem.addEventListener("keydown", e => {
     if(e.key === 'Enter') {                        //still under construction.
+      document.querySelector("#interest-only-radio").checked = true;
       e.preventDefault();
       selectRadio(".js-interest-only-radio");
       if(checkInfo()){
@@ -92,12 +95,18 @@ function eventListeners() {
     }
   });
 
+  repayElem.addEventListener("click", () => {
+    selectRadio(".js-repay-radio");
+  });
+  interestOnlyElem.addEventListener("click", () => {
+    selectRadio(".js-interest-only-radio");
+  });
+
   //this needs to be last be
 }
 
 function pressSubmit(){                            //still remaining to get the selection input.
-  let monthlyRepay = 234000;
-  let totalToPay = 539322.94;
+  const paymentObj = calcPayment();
   resElem.style.textAlign = 'start';
   resElem.innerHTML = `
     <h2>
@@ -112,11 +121,11 @@ function pressSubmit(){                            //still remaining to get the 
       <p>
         Your monthly repayments
       </p>
-      <div class="render-monthly-amount">£${monthlyRepay.toFixed(2)}</div>
+      <div class="render-monthly-amount">£${paymentObj.monthlyPayment.toFixed(2)}</div>
       <p>
         Total you'll repay over the term
         <div class="render-total">
-          £${totalToPay.toFixed(2)}
+          £${paymentObj.totalPayment.toFixed(2)}
         </div>
       </p>
     </div>
@@ -126,9 +135,11 @@ function pressSubmit(){                            //still remaining to get the 
 function checkInfo(){
   amount = Number.parseFloat(amountElem.value.replace(/,/g, ''));
   years = Number.parseFloat(yearsElem.value);
-  interest = Number.parseFloat(interestElem.value); 
+  interest = Number.parseFloat(interestElem.value);
+  mortgageType = document.querySelector(`[name="mortgage-type"]:checked`).value;
+  console.log(amount, years, interest, mortgageType);
 
-  if(!amount && !years && !interest){
+  if(isNaN(amount) || isNaN(years) || isNaN(interest) || !mortgageType){
     document.querySelectorAll('.error-message').forEach(elem => {
       elem.style.display = "block";
     });
@@ -152,3 +163,28 @@ function selectRadio(classSelector){
     elem.remove('radio-selected')
   } 
 }
+
+function calcPayment() {
+  let P = amount;
+  let r = (interest / 100) / 12; // Monthly interest rate
+  let n = years * 12; // Total number of payments (months)
+  let M = NaN;
+  let total = NaN;
+
+  if (mortgageType === 'repayment') {
+    let temp = Math.pow(1 + r, n);
+    M = (P * r * temp) / (temp - 1);
+    total = M * n; // Total payment for repayment mortgage
+  } else {
+    M = P * r; // Interest-only monthly payment
+    total = (M * n) + P; // Total payment for interest-only mortgage
+  }
+
+  const paymentObj = {
+    monthlyPayment: M,
+    totalPayment: total
+  };
+
+  return paymentObj;
+}
+
