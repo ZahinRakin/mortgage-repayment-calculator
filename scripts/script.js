@@ -10,7 +10,12 @@
 //js-repayment-bar        //js-repay-radio         //radio-selected
 //js-interest-only-bar    //js-interest-only-radio
 import { manageFocus, clearAll, handleKeyDown } from "./done.js";
-import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem, submitButton, amount, years, interest} from './variables.js';
+import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem, submitButton} from './variables.js';
+
+let amount = NaN;
+let years = NaN;
+let interest = NaN;
+
 
 eventListeners(); 
 
@@ -93,16 +98,11 @@ function pressSubmit(){
 }
 
 function checkInfo(){
-  console.log("inside checkInfo");
-
-
   amount = Number.parseFloat(amountElem.value.replace(/,/g, ''));
   years = Number.parseFloat(yearsElem.value);
   interest = Number.parseFloat(interestElem.value); 
 
-  console.log(amount, years, interest);
-
-  if(amount === NaN || years === NaN || interest === NaN){
+  if(!amount && !years && !interest){
     document.querySelectorAll('.error-message').forEach(elem => {
       elem.style.display = "block";
     });
