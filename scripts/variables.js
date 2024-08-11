@@ -5,6 +5,7 @@ export const interestElem = document.querySelector(".js-mort-interest");
 export const repayElem = document.querySelector(".js-repayment-bar");
 export const interestOnlyElem = document.querySelector(".js-interest-only-bar");
 export const submitButton = document.querySelector(".js-submit-button");
+export const resElem = document.querySelector('.js-result-sec');
 export const emptyResHTML = `
   <div class="empty-img-holder">
     <img src="../assets/images/illustration-empty.svg" alt="illustration empty" class="empty-img">

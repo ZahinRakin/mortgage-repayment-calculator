@@ -10,7 +10,7 @@
 //js-repayment-bar        //js-repay-radio         //radio-selected
 //js-interest-only-bar    //js-interest-only-radio
 import { manageFocus, clearAll, handleKeyDown } from "./done.js";
-import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem, submitButton} from './variables.js';
+import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem, submitButton, resElem} from './variables.js';
 
 let amount = NaN;
 let years = NaN;
@@ -21,15 +21,17 @@ eventListeners();
 
 function eventListeners() {
   document.querySelector(".js-clear-all-button")
-  .addEventListener("click", () => {
+  .addEventListener("click", e => {
+    e.preventDefault();
     clearAll();
   });
 
   submitButton.addEventListener("click", e => {
     e.preventDefault();
     console.log("submit button have been pressed.");
-    checkInfo();
-    pressSubmit();
+    if(checkInfo()){
+      pressSubmit();
+    }
   });
 
   amountElem.addEventListener("focus", () => {
@@ -65,12 +67,12 @@ function eventListeners() {
 
   //selection section
   repayElem.addEventListener("keydown", e => {
-    if(e.key === 'Enter'){
+    if(e.key === 'Enter'){                         //still under construction.
       e.preventDefault();
-                                                        //under construction
       selectRadio(".js-repay-radio");
-      checkInfo();
-      pressSubmit();
+      if(checkInfo()){
+        pressSubmit();
+      }
       amountElem.focus();
     } else {
       handleKeyDown(interestElem, interestOnlyElem, e);
@@ -78,12 +80,12 @@ function eventListeners() {
   });
   
   interestOnlyElem.addEventListener("keydown", e => {
-    if(e.key === 'Enter') {
+    if(e.key === 'Enter') {                        //still under construction.
       e.preventDefault();
-                                                        //under construction
       selectRadio(".js-interest-only-radio");
-      checkInfo();
-      pressSubmit();
+      if(checkInfo()){
+        pressSubmit();
+      }
       amountElem.focus();
     } else {
       handleKeyDown(repayElem, amountElem, e);
@@ -93,8 +95,32 @@ function eventListeners() {
   //this needs to be last be
 }
 
-function pressSubmit(){
-  console.log("hello I am from submit..");
+function pressSubmit(){                            //still remaining to get the selection input.
+  let monthlyRepay = 234000;
+  let totalToPay = 539322.94;
+  resElem.style.textAlign = 'start';
+  resElem.innerHTML = `
+    <h2>
+      Your results
+    </h2>
+    <p>
+      Your results are shown below based on the information you provided.
+      To adjust the results, edit the form and click “calculate repayments” again.
+    </p>
+    <div class="yellow-stripe"></div>
+    <div class="render-place">
+      <p>
+        Your monthly repayments
+      </p>
+      <div class="render-monthly-amount">£${monthlyRepay.toFixed(2)}</div>
+      <p>
+        Total you'll repay over the term
+        <div class="render-total">
+          £${totalToPay.toFixed(2)}
+        </div>
+      </p>
+    </div>
+  `;
 }
 
 function checkInfo(){
@@ -106,10 +132,12 @@ function checkInfo(){
     document.querySelectorAll('.error-message').forEach(elem => {
       elem.style.display = "block";
     });
+    return false;
   } else {
     document.querySelectorAll('.error-message').forEach(elem => {
       elem.style.display = "none";
-    });  
+    }); 
+    return true; 
   }
 }
 

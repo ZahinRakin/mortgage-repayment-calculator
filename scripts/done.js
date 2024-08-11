@@ -1,4 +1,4 @@
-import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem} from './variables.js';
+import {amountElem, yearsElem, interestElem, resElem, emptyResHTML} from './variables.js';
 
 
 export function manageFocus(addTo){
@@ -13,6 +13,8 @@ export function clearAll(){
   amountElem.value = "";
   yearsElem.value = "";
   interestElem.value = "";
+  resElem.style.textAlign =  'center';
+  resElem.innerHTML = emptyResHTML;
 }
 
 export function handleKeyDown(previousInput, nextInput, e){
