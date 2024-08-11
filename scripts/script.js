@@ -1,14 +1,3 @@
-// input-bar-focused
-// input-bar-selected
-// radio-stroke-selected
-//js-mort-amount  //error-amount
-//js-mort-years  // error-years
-//js-mort-interest //error-interest
-//js-amount-parent
-//js-years-parent
-//js-interest-parent
-//js-repayment-bar        //js-repay-radio         //radio-selected   #repay-radio #interest-only-radio
-//js-interest-only-bar    //js-interest-only-radio
 import { manageFocus, clearAll, handleKeyDown } from "./done.js";
 import {amountElem, yearsElem, interestElem, repayElem, interestOnlyElem, submitButton, resElem} from './variables.js';
 
@@ -34,11 +23,11 @@ function eventListeners() {
       pressSubmit();
     }
   });
-
+  //focus event listener
   amountElem.addEventListener("focus", () => {
     manageFocus(".js-amount-parent");
   });
-  amountElem.focus(); //this is for startup.....
+  amountElem.focus();
 
   yearsElem.addEventListener("focus", () => {
     manageFocus(".js-years-parent");
@@ -46,7 +35,6 @@ function eventListeners() {
   interestElem.addEventListener("focus", () => {
     manageFocus(".js-interest-parent");
   });
-  //here the focus for the selection sec
   repayElem.addEventListener("focus", () => {
     manageFocus(".js-repayment-bar");
     console.log();
@@ -54,19 +42,16 @@ function eventListeners() {
   interestOnlyElem.addEventListener("focus", () => {
     manageFocus(".js-interest-only-bar");
   });
-//-------------------------------------------------------//
+  //keydown event listener
   amountElem.addEventListener("keydown", e => {
     handleKeyDown(interestOnlyElem, yearsElem, e);
   });
-
   yearsElem.addEventListener("keydown", e => {
     handleKeyDown(amountElem, interestElem, e);
   });
   interestElem.addEventListener("keydown", e => {
     handleKeyDown(yearsElem, repayElem, e);
   });
-
-  //selection section
   repayElem.addEventListener("keydown", e => {
     if(e.key === 'Enter'){                         //still under construction.
       document.querySelector("#repay-radio").checked = true;
@@ -80,7 +65,6 @@ function eventListeners() {
       handleKeyDown(interestElem, interestOnlyElem, e);
     }
   });
-  
   interestOnlyElem.addEventListener("keydown", e => {
     if(e.key === 'Enter') {                        //still under construction.
       document.querySelector("#interest-only-radio").checked = true;
@@ -94,18 +78,16 @@ function eventListeners() {
       handleKeyDown(repayElem, amountElem, e);
     }
   });
-
+  //click event listener
   repayElem.addEventListener("click", () => {
     selectRadio(".js-repay-radio");
   });
   interestOnlyElem.addEventListener("click", () => {
     selectRadio(".js-interest-only-radio");
   });
-
-  //this needs to be last be
 }
 
-function pressSubmit(){                            //still remaining to get the selection input.
+function pressSubmit(){
   const paymentObj = calcPayment();
   resElem.style.textAlign = 'start';
   resElem.innerHTML = `
