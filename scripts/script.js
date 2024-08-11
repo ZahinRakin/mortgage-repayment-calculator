@@ -40,43 +40,38 @@ function eventListeners() {
   });
 //-------------------------------------------------------//
   amountElem.addEventListener("keydown", e => {
-    handleKeyDown(interestElem, yearsElem, e);
+    handleKeyDown(interestOnlyElem, yearsElem, e);
   });
 
   yearsElem.addEventListener("keydown", e => {
     handleKeyDown(amountElem, interestElem, e);
   });
   interestElem.addEventListener("keydown", e => {
-    if(e.key === 'Enter'){
-      console.log('i am encountering enter after interest only.');                //this is also printing
-      e.preventDefault();
-      console.log(repayElem);                                                      //this is pringting value
-      repayElem.focus();                                           //here coming
-    } else {
-      handleKeyDown(yearsElem, amountElem, e);
-    }
+    handleKeyDown(yearsElem, repayElem, e);
   });
 
   //selection section
   repayElem.addEventListener("keydown", e => {
-    selHandleKeyDown(interestOnlyElem, e);  //this is also executing.
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      console.log('selecting is the only thing that is remaining.');        //tesing.
+      amountElem.focus();
+    } else {
+      handleKeyDown(interestElem, interestOnlyElem, e);
+    }
   });
   
   interestOnlyElem.addEventListener("keydown", e => {
-    selHandleKeyDown(repayElem, e);
+    if(e.key === 'Enter') {
+      e.preventDefault();
+      console.log('selecting is the only thing that is remaining.');        //tesing.
+      amountElem.focus();
+    } else {
+      handleKeyDown(repayElem, amountElem, e);
+    }
   });
 
   //this needs to be last be
-}
-
-function selHandleKeyDown(nextInput, e) {
-  if(e.key === 'Enter') {
-    e.preventDefault();
-    submit();                                //unfinished....
-  } else if(e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-    e.preventDefault();
-    nextInput.focus();
-  }
 }
 
 function submit(){
