@@ -114,6 +114,13 @@ function checkInfo(){
 }
 
 function selectRadio(classSelector){
+  document.querySelectorAll(".radio-selected").forEach(element => {
+    element.classList.remove('radio-selected');
+  });
   const elem = document.querySelector(classSelector).classList;
-  elem.contains("radio-selected") ? elem.remove('radio-selected') : elem.add('radio-selected'); 
+  if(!elem.contains("radio-selected")) {
+    elem.add('radio-selected');
+  } else {
+    elem.remove('radio-selected')
+  } 
 }
