@@ -103,11 +103,11 @@ function pressSubmit(){
       <p>
         Your monthly repayments
       </p>
-      <div class="render-monthly-amount">£${paymentObj.monthlyPayment.toFixed(2)}</div>
+      <div class="render-monthly-amount">£${paymentObj.monthlyPayment}</div>
       <p>
         Total you'll repay over the term
         <div class="render-total">
-          £${paymentObj.totalPayment.toFixed(2)}
+          £${paymentObj.totalPayment}
         </div>
       </p>
     </div>
@@ -162,11 +162,18 @@ function calcPayment() {
     total = (M * n) + P; // Total payment for interest-only mortgage
   }
 
-  const paymentObj = {
-    monthlyPayment: M,
-    totalPayment: total
-  };
+  const formatter = new Intl.NumberFormat('en-US', { 
+    style: 'decimal', 
+    minimumFractionDigits: 2, 
+    maximumFractionDigits: 2 
+  });
+  
+  let formattedMonthlyPayment = formatter.format(M);
+  let formattedTotalPayment = formatter.format(total);
 
-  return paymentObj;
+  return {
+    monthlyPayment: formattedMonthlyPayment,
+    totalPayment: formattedTotalPayment
+  };
 }
 
